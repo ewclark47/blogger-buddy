@@ -6,24 +6,28 @@ export default async function PostsPage(){
 
     const posts = await db.post.findMany()
 
+    const rendered_posts = posts.map( (post) => {
+        return(
+            <Link key={GenerateKey()} href={`/posts/${post.id}`}>
+                <div>
+                    {post.title}
+                </div>
+                <div>
+                    View
+                </div>
+            </Link>
+        )
+    })
+
     return(
-        <>
-            <h1> Posts </h1>
+        <div>
+            <h1>Posts</h1>
             <div>
-                <Link key={GenerateKey()} href={"/posts/new"}>New Post</Link>
+                <Link href={'/posts/new'}>New Post</Link>
             </div>
             <div>
-                <ul>
-                    {posts.map((post) => (
-                        <li key={post.id}>
-                            <h4>{post.title}</h4>
-                            <div>
-                                {post.post}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                {rendered_posts}
             </div>
-        </>
+        </div>
     )
 }

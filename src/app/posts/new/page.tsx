@@ -1,6 +1,4 @@
 import { createPost } from "@/actions/server-actions";
-import { db } from "@/db";
-import { redirect } from "next/navigation";
 
 export default function CreatePost(){
     return(
